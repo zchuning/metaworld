@@ -154,14 +154,22 @@ class SawyerBinPickingEnvV2(SawyerXYZEnv):
             sigmoid='long_tail',
         )
 
+        desired_height = max(0.1 - 6.9 * obj[0] ** 2, 0)
+        at_height = reward_utils.tolerance(
+            abs(obj[2] - 0.03 - desired_height),
+            bounds=(0, 0.02),
+            margin=0.04,
+            sigmoid='long_tail',
+        )
+
         object_grasped = reward_utils.gripper_caging_reward(self, action, obj)
         reward = reward_utils.hamacher_product(object_grasped, in_place)
 
-        tcp_opened = obs[3]
+        tcp_opened = min(1 - obs[3], 1)
         tcp_to_obj = np.linalg.norm(obj - self.tcp_center)
 
         if tcp_to_obj < 0.02 and tcp_opened > 0:
-            reward += 1. + 5. * in_place
+            reward += 3. * at_height + 3. * in_place
         if target_to_obj < self.TARGET_RADIUS:
             reward = 10.
 
