@@ -140,9 +140,7 @@ class SawyerNutAssemblyEnvV2(SawyerXYZEnv):
         # a protective torus around it
         radius = np.linalg.norm(pos_error[:2])
         torus_radius = target_pos[2] / 2.0  # Height of the peg / 2
-        torus_center = target_pos.copy()
-        torus_center[2] = 0.0
-        center_to_torus_center = torus_radius + 0.01
+        center_to_torus_center = torus_radius + 0.02
 
         floor = target_pos[2] + np.sqrt(
             torus_radius ** 2 - (center_to_torus_center - radius) ** 2
