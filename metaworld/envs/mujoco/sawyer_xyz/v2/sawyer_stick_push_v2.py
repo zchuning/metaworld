@@ -58,7 +58,7 @@ class SawyerStickPushEnvV2(SawyerXYZEnv):
             'pickRew': pickRew,
             'epRew': reward,
             'goalDist': pushDist,
-            'success': float(pushDist <= 0.1 and reachDist <= 0.05 and placeDist <= 0.1)
+            'success': float(pushDist <= 0.1 and reachDist <= 0.05 and placeDist <= 0.15)
         }
 
         return ob, reward, False, info

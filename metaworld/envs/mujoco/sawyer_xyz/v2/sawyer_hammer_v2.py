@@ -54,7 +54,7 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
             'pickRew': pickRew,
             'epRew': reward,
             'goalDist': screwDist,
-            'success': float(screwDist <= 0.05 and hammerDist <= 0.05)
+            'success': float(screwDist <= 0.05 and hammerDist <= 0.1)
         }
 
         return ob, reward, False, info
