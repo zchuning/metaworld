@@ -50,7 +50,7 @@ class SawyerStickPushEnvV2(SawyerXYZEnv):
     @_assert_task_is_set
     def step(self, action):
         ob = super().step(action)
-        reward, _, reachDist, pickRew, _, pushDist = self.compute_reward(action, ob)
+        reward, _, reachDist, pickRew, _, pushDist, placeDist = self.compute_reward(action, ob)
         self.curr_path_length += 1
 
         info = {
@@ -58,7 +58,7 @@ class SawyerStickPushEnvV2(SawyerXYZEnv):
             'pickRew': pickRew,
             'epRew': reward,
             'goalDist': pushDist,
-            'success': float(pushDist <= 0.1 and reachDist <= 0.05)
+            'success': float(pushDist <= 0.1 and reachDist <= 0.05 and placeDist <= 0.1)
         }
 
         return ob, reward, False, info
@@ -184,4 +184,4 @@ class SawyerStickPushEnvV2(SawyerXYZEnv):
         assert ((pushRew >=0) and (pickRew>=0))
         reward = reachRew + pickRew + pushRew
 
-        return [reward, reachRew, reachDist, pickRew, pushRew, pushDist]
+        return [reward, reachRew, reachDist, pickRew, pushRew, pushDist, placeDist]

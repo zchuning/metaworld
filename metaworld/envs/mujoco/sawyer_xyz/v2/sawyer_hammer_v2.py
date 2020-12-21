@@ -46,7 +46,7 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
     @_assert_task_is_set
     def step(self, action):
         ob = super().step(action)
-        reward, _, reachDist, pickRew, _, _, screwDist = self.compute_reward(action, ob)
+        reward, _, reachDist, pickRew, _, hammerDist, screwDist = self.compute_reward(action, ob)
         self.curr_path_length += 1
 
         info = {
@@ -54,7 +54,7 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
             'pickRew': pickRew,
             'epRew': reward,
             'goalDist': screwDist,
-            'success': float(screwDist <= 0.05)
+            'success': float(screwDist <= 0.05 and hammerDist <= 0.05)
         }
 
         return ob, reward, False, info
