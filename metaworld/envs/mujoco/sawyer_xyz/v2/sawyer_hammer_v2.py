@@ -23,7 +23,7 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
         )
 
         self.init_config = {
-            'hammer_init_pos': np.array([0, 0.5, 0.0]),
+            'hammer_init_pos': np.array([0, 0.5, 0.04]),
             'hand_init_pos': np.array([0, 0.4, 0.2]),
         }
         self.goal = self.init_config['hammer_init_pos']
@@ -114,9 +114,10 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
         nail_pos = obs[6:9]
 
         rightFinger, leftFinger = self._get_site_pos('rightEndEffector'), self._get_site_pos('leftEndEffector')
+        hammerHeadPos = self._get_site_pos('hammerHead').copy()
         fingerCOM = (rightFinger + leftFinger) / 2.0
 
-        hammerDist = np.linalg.norm(nail_pos - hammer_pos)
+        hammerDist = np.linalg.norm(nail_pos - hammerHeadPos)
         screwDist = np.abs(nail_pos[1] - self._target_pos[1])
         reachDist = np.linalg.norm(hammer_pos - fingerCOM)
 

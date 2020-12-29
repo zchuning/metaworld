@@ -7,6 +7,7 @@
         <include file="../objects/assets/xyz_base.xml"/>
         <body name="hammerbody" pos="0 0.6 0.02">
           <freejoint/>
+          <inertial pos="0 0 0" mass="1" diaginertia="100000 100000 100000"/>
           <include file="../objects/assets/hammer.xml"/>
 
         </body>
