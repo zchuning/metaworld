@@ -54,7 +54,8 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
             'pickRew': pickRew,
             'epRew': reward,
             'goalDist': screwDist,
-            'success': float(screwDist <= 0.05 and hammerDist <= 0.1)
+            # 'success': float(screwDist <= 0.05 and hammerDist <= 0.1)
+            'success': float(reward > 300)
         }
 
         return ob, reward, False, info
@@ -139,6 +140,7 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
             self.pickCompleted = True
 
         def objDropped():
+            # return not pickCompletionCriteria()
             return (hammer_pos[2] < (self.hammerHeight + 0.005)) and (hammerDist >0.02) and (reachDist > 0.02)
             # Object on the ground, far away from the goal, and from the gripper
             # Can tweak the margin limits
