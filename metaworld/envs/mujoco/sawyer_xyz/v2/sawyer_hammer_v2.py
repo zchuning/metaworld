@@ -25,6 +25,7 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
         self.init_config = {
             'hammer_init_pos': np.array([0, 0.5, 0.04]),
             'hand_init_pos': np.array([0, 0.4, 0.2]),
+            'nail_init_pos': 0.0,
         }
         self.goal = self.init_config['hammer_init_pos']
         self.hammer_init_pos = self.init_config['hammer_init_pos']
@@ -75,6 +76,12 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
         qvel[9:15] = 0
         self.set_state(qpos, qvel)
 
+    def _set_nail_xyz(self, pos):
+        qpos = self.data.qpos.flat.copy()
+        qvel = self.data.qvel.flat.copy()
+        qpos[16] = pos
+        self.set_state(qpos, qvel)
+
     def reset_model(self):
         self._reset_hand()
 
@@ -89,6 +96,7 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
         self.hammer_init_pos = self._get_state_rand_vec() if self.random_init \
             else self.init_config['hammer_init_pos']
         self._set_hammer_xyz(self.hammer_init_pos)
+        self._set_nail_xyz(self.init_config['nail_init_pos'])
 
         # Update heights (for use in reward function)
         self.hammerHeight = self.get_body_com('hammer').copy()[2]
