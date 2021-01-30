@@ -16,6 +16,7 @@ class SawyerDoorCloseEnvV2(SawyerDoorEnvV2):
             'obj_init_angle': 0.3,
             'obj_init_pos': np.array([0.1, 0.95, 0.15], dtype=np.float32),
             'hand_init_pos': np.array([0, 0.6, 0.2], dtype=np.float32),
+            'door_init_pos': 1.3
         }
         self.goal = np.array([0.2, 0.8, 0.15])
         self.obj_init_pos = self.init_config['obj_init_pos']
@@ -39,7 +40,7 @@ class SawyerDoorCloseEnvV2(SawyerDoorEnvV2):
         self.sim.model.site_pos[self.model.site_name2id('goal')] = self._target_pos
 
         # keep the door open after resetting initial positions
-        self._set_obj_xyz(-1.5708)
+        self._set_obj_xyz(self.init_config['door_init_pos']) # -1.5708
         self.maxPullDist = np.linalg.norm(self.data.get_geom_xpos('handle')[:-1] - self._target_pos[:-1])
         self.target_reward = 1000*self.maxPullDist + 1000*2
 
@@ -76,4 +77,3 @@ class SawyerDoorCloseEnvV2(SawyerDoorEnvV2):
         reward = reachRew + pullRew
 
         return [reward, reachDist, pullDist]
-

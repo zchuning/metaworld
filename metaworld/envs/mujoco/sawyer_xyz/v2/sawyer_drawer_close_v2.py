@@ -23,6 +23,7 @@ class SawyerDrawerCloseEnvV2(SawyerXYZEnv):
             'obj_init_angle': np.array([0.3, ], dtype=np.float32),
             'obj_init_pos': np.array([0., 0.9, 0.0], dtype=np.float32),
             'hand_init_pos': np.array([0, 0.6, 0.2], dtype=np.float32),
+            'drawer_init_pos': 0.0 # 0 - 0.15
         }
         self.obj_init_pos = self.init_config['obj_init_pos']
         self.obj_init_angle = self.init_config['obj_init_angle']
@@ -39,7 +40,7 @@ class SawyerDrawerCloseEnvV2(SawyerXYZEnv):
         )
         self.goal_space = Box(np.array(goal_low), np.array(goal_high))
 
-        self.maxDist = 0.15
+        self.maxDist = self.init_config['drawer_init_pos']
         self.target_reward = 1000 * self.maxDist + 1000 * 2
 
     @property
@@ -83,6 +84,8 @@ class SawyerDrawerCloseEnvV2(SawyerXYZEnv):
         # Set _target_pos to current drawer position (closed)
         self._target_pos = self.obj_init_pos + np.array([.0, -.16, .09])
         # Pull drawer out all the way and mark its starting position
+        self.maxDist = self.init_config['drawer_init_pos']
+        self.target_reward = 1000 * self.maxDist + 1000 * 2
         self._set_obj_xyz(-self.maxDist)
 
         return self._get_obs()

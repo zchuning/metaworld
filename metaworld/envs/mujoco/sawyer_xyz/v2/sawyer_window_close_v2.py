@@ -32,8 +32,9 @@ class SawyerWindowCloseEnvV2(SawyerXYZEnv):
 
         self.init_config = {
             'obj_init_angle': 0.3,
-            'obj_init_pos': np.array([0.1, 0.785, 0.16], dtype=np.float32),
+            'obj_init_pos': np.array([0, 0.785, 0.16], dtype=np.float32),
             'hand_init_pos': np.array([0, 0.4, 0.2], dtype=np.float32),
+            'slider_init_pos': 0.2 # 0 - 0.2
         }
         self.obj_init_pos = self.init_config['obj_init_pos']
         self.obj_init_angle = self.init_config['obj_init_angle']
@@ -88,7 +89,11 @@ class SawyerWindowCloseEnvV2(SawyerXYZEnv):
         self.sim.model.body_pos[self.model.body_name2id(
             'window'
         )] = self.obj_init_pos
-        self.data.set_joint_qpos('window_slide', 0.2)
+
+        slider_init_pos = self.init_config['slider_init_pos']
+        self.data.set_joint_qpos('window_slide', slider_init_pos)
+        self.maxPullDist = slider_init_pos
+        self.target_reward = 1000 * self.maxPullDist + 1000 * 2
 
         return self._get_obs()
 
