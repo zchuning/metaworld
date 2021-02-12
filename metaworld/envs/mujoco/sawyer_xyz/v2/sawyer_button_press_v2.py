@@ -8,8 +8,8 @@ from metaworld.envs.mujoco.sawyer_xyz.sawyer_xyz_env import SawyerXYZEnv, _asser
 class SawyerButtonPressEnvV2(SawyerXYZEnv):
     def __init__(self):
 
-        hand_low = (-0.5, 0.40, 0.05)
-        hand_high = (0.5, 1, 0.5)
+        hand_low = (-0.2, 0.4, 0.05) # (-0.5, 0.40, 0.05)
+        hand_high = (0.2, 0.8, 0.3) # (0.5, 1, 0.5)
         obj_low = (-0.1, 0.85, 0.115)
         obj_high = (0.1, 0.9, 0.115)
 

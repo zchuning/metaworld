@@ -23,7 +23,7 @@ class SawyerDrawerCloseEnvV2(SawyerXYZEnv):
             'obj_init_angle': np.array([0.3, ], dtype=np.float32),
             'obj_init_pos': np.array([0., 0.9, 0.0], dtype=np.float32),
             'hand_init_pos': np.array([0, 0.6, 0.2], dtype=np.float32),
-            'drawer_init_pos': 0.0 # 0 - 0.15
+            'drawer_init_pos': 0.15 # 0 - 0.15
         }
         self.obj_init_pos = self.init_config['obj_init_pos']
         self.obj_init_angle = self.init_config['obj_init_angle']
