@@ -34,7 +34,9 @@ class SawyerStickPullV2Policy(Policy):
         hand_pos = o_d['hand_pos']
         stick_pos = o_d['stick_pos'] + np.array([-.015, .0, .03])
         thermos_pos = o_d['obj_pos'] + np.array([-.015, .0, .03])
-        goal_pos = o_d['goal_pos'] + np.array([-.05, .0, .0])
+        goal_pos = o_d['goal_pos'] #+ np.array([-.05, .0, .0])
+        goal_pos = np.array([0.25, .0, .0])
+        # print('goal_pos', goal_pos)
 
         if abs(stick_pos[0] - thermos_pos[0]) > 0.04:
             if np.linalg.norm(hand_pos[:2] - stick_pos[:2]) > 0.02:

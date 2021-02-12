@@ -44,6 +44,8 @@ from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_shelf_place_v2 import SawyerShel
 from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_soccer_v2 import SawyerSoccerEnvV2
 from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_stick_pull_v2 import SawyerStickPullEnvV2
 from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_stick_push_v2 import SawyerStickPushEnvV2
+from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_stick_push_sideways_v2 import SawyerStickPushSidewaysEnvV2
+from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_hook_pull_v2 import SawyerHookPullEnvV2
 from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_sweep_v2 import SawyerSweepEnvV2
 from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_sweep_into_goal_v2 import SawyerSweepIntoGoalEnvV2
 from metaworld.envs.mujoco.sawyer_xyz.v2.sawyer_window_close_v2 import SawyerWindowCloseEnvV2
@@ -97,6 +99,7 @@ __all__ = [
     'SawyerSoccerEnvV2',
     'SawyerStickPullEnvV2',
     'SawyerStickPushEnvV2',
+    'SawyerStickPushSidewaysEnvV2',
     'SawyerSweepEnvV2',
     'SawyerSweepIntoGoalEnvV2',
     'SawyerWindowCloseEnvV2',
