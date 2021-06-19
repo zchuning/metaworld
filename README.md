@@ -2,6 +2,9 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/rlworkgroup/metaworld/blob/master/LICENSE)
 [![Build Status](https://travis-ci.com/rlworkgroup/metaworld.svg?branch=master)](https://travis-ci.com/rlworkgroup/metaworld)
 
+### This fork of the MetaWorld repo is modified for the [LatCo](https://github.com/zchuning/latco) project. Changes are made to the initial states, range of random initialization, reward computation, and success criterion.
+---
+
 __Meta-World is an open-source simulated benchmark for meta-reinforcement learning and multi-task learning consisting of 50 distinct robotic manipulation tasks.__ We aim to provide task distributions that are sufficiently broad to evaluate meta-RL algorithms' generalization ability to new behaviors.
 
 For more background information, please refer to our [website](https://meta-world.github.io) and the accompanying [conference publication](https://arxiv.org/abs/1910.10897), which **provides baseline results for 8 state-of-the-art meta- and multi-task RL algorithms**.
