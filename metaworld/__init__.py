@@ -6,6 +6,7 @@ from typing import List, NamedTuple, Type
 
 import metaworld.envs.mujoco.env_dict as _env_dict
 import numpy as np
+from metaworld.sparse_metaworld import SparseMetaWorld
 
 
 EnvName = str
