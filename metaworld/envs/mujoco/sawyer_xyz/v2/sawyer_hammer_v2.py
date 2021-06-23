@@ -6,7 +6,7 @@ from metaworld.envs.mujoco.sawyer_xyz.sawyer_xyz_env import SawyerXYZEnv, _asser
 
 
 class SawyerHammerEnvV2(SawyerXYZEnv):
-    def __init__(self, strict_reward=False):
+    def __init__(self):
 
         liftThresh = 0.09
         hand_low = (-0.5, 0.40, 0.05)
@@ -33,7 +33,6 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
 
         self.liftThresh = liftThresh
         self.max_path_length = 200
-        self.strict_reward = strict_reward
 
         self._random_reset_space = Box(np.array(obj_low), np.array(obj_high))
         self.goal_space = Box(np.array(goal_low), np.array(goal_high))
@@ -56,10 +55,8 @@ class SawyerHammerEnvV2(SawyerXYZEnv):
             'pickRew': pickRew,
             'epRew': reward,
             'goalDist': screwDist,
-            'success': float(screwDist <= 0.05 and hammerDist <= 0.1)
+            'success': float(reward > 300)
         }
-        if self.strict_reward:
-            info['success'] = float(reward > 300)
 
         return ob, reward, False, info
 
